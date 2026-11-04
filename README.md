@@ -13,6 +13,16 @@ The project classifies walking speed into 12 categories based on the positions o
 
 The data comes from a Kaggle human gait phase dataset. It includes 21 subjects (10 male and 11 female). Each subject walked in a laboratory at 12 different speeds from 0.6 m/s to 1.7 m/s in steps of 0.1 m/s, walking at each speed for one minute.
 
+### Data and markers
+
+![Motion-capture gait laboratory with an instrumented treadmill](images/data-collection.png)
+
+*Motion-capture gait laboratory with an instrumented treadmill.*
+
+![Reflective markers placed on the foot](images/marker-placement.png)
+
+*Reflective markers placed on each foot. Four markers per foot give the 24 position values used as the model input.*
+
 ## Method
 
 The report first evaluates standard scikit-learn classifiers as a baseline, then builds a custom CNN:
@@ -45,6 +55,20 @@ Baseline scikit-learn classifiers on the larger dataset performed worse:
 
 The report also notes that reshaping the input from 1D to 2D and applying 2D convolution raised the accuracy from 73 percent for the 1D version to 95 percent for the 2D version. The report observes that validation accuracy slightly exceeds training accuracy and discusses this as a possible sign of overfitting or limited data variation, and it suggests adding force data and analyzing data over time intervals as future work.
 
+### Training curves
+
+| Accuracy | Loss |
+| :-: | :-: |
+| ![Model accuracy over 120 epochs](images/training-accuracy.png) | ![Model loss over 120 epochs](images/training-loss.png) |
+
+Training and validation accuracy climb to about 95 percent over the 120 training epochs.
+
+### Feature correlation
+
+![Pearson correlation of the marker features and walking speed](images/feature-correlation.png)
+
+*Pearson correlation between the marker position features and walking speed.*
+
 ## Repository contents
 
 | Path | Description |
@@ -53,6 +77,7 @@ The report also notes that reshaping the input from 1D to 2D and applying 2D con
 | slides/DeepLearningProjectPresentation.pptx | Presentation slides |
 | code/ProjectTest_v3.ipynb | Notebook that loads a single marker group (GP1) from a local folder |
 | code/ProjectTest_v12.ipynb | Notebook that downloads the Kaggle dataset and loads three marker groups (GP1, GP2, GP3) |
+| images/ | Figures used in this README, taken from the report and slides |
 
 ### About the two notebooks
 
